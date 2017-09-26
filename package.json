@@ -1,0 +1,19 @@
+{
+  "name": "crowd_photo_back",
+  "version": "1.0.0",
+  "description": "Back end for Crowdsourced Photoshop Editing",
+  "main": "index.js",
+  "repository": "https://github.com/flemwad/crowd_photo_back.git",
+  "author": "Tyler Flemming <tflem18@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "express-graphql": "^0.6.11",
+    "graphiql": "^0.11.5",
+    "graphql": "^0.11.3",
+    "restify": "^6.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
+}
