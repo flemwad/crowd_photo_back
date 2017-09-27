@@ -7,13 +7,21 @@
   "author": "Tyler Flemming <tflem18@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-graphql": "^0.6.11",
     "graphiql": "^0.11.5",
     "graphql": "^0.11.3",
+    "graphql-server-express": "^1.1.2",
+    "graphql-tools": "^1.2.3",
+    "mongodb": "^2.2.31",
     "restify": "^6.0.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "webpack": "^3.6.0"
   }
 }

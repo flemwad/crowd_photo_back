@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express();
+var expressApp = express();
 
 var { buildSchema } = require('graphql');
 
@@ -17,4 +17,8 @@ var root = {
     },
 };
 
-module.exports = app;
+module.exports = {
+    expressApp: expressApp,
+    schema: schema,
+    root: root
+}
