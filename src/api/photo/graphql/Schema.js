@@ -2,13 +2,8 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { Photo } from './types/Photo';
 import { Image } from './types/Image';
+import { PhotoMeta } from './types/PhotoMeta';
 import Resolvers from './resolvers/Resolvers';
-
-//TODO: Strongly type the input on Photo Mutations
-// import { PhotoInput } from './inputs/PhotoInput';
-
-//TODO: Wire up to mongodb w/ mongoose
-// export const Resolvers = ;
 
 const PhotoQuery = `
     type Query {
@@ -23,6 +18,6 @@ const PhotoMutation = `
 `;
 
 export const PhotoSchema = makeExecutableSchema({ 
-    typeDefs: [PhotoQuery, PhotoMutation, Photo, Image],
+    typeDefs: [PhotoQuery, PhotoMutation, Photo, Image, PhotoMeta],
     resolvers: Resolvers
 });

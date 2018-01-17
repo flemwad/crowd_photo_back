@@ -6,6 +6,10 @@
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.9.4.tgz#cdeb6bcbef9b6c584374b81aa7f48ecf3da404fa"
 
+"@types/zen-observable@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.5.3.tgz#91b728599544efbb7386d8b6633693a3c2e7ade5"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -82,6 +86,14 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
+apollo-link@^1.0.0:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.0.7.tgz#42cd38a7378332fc3e41a214ff6a6e5e703a556f"
+  dependencies:
+    "@types/zen-observable" "0.5.3"
+    apollo-utilities "^1.0.0"
+    zen-observable "^0.6.0"
+
 apollo-server-core@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-1.1.0.tgz#74c3bf4394e14eae7ab60b1d999a3c5b8aa94e9a"
@@ -104,6 +116,10 @@ apollo-tracing@^0.0.7:
   resolved "https://registry.yarnpkg.com/apollo-tracing/-/apollo-tracing-0.0.7.tgz#78466cfefdb52a0802a57b488d26a1a67a25909f"
   dependencies:
     graphql-tools "^1.1.0"
+
+apollo-utilities@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.4.tgz#560009ea5541b9fdc4ee07ebb1714ee319a76c15"
 
 apollo-utilities@^1.0.1:
   version "1.0.1"
@@ -1502,6 +1518,10 @@ es6-promise@3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.2.1.tgz#ec56233868032909207170c39448e24449dd1fc4"
 
+es6-promise@^4.1.1:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.2.tgz#f722d7769af88bd33bc13ec6605e1f92966b82d9"
+
 es6-set@~0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/es6-set/-/es6-set-0.1.5.tgz#d2b3ec5d4d800ced818db538d28974db0a73ccb1"
@@ -2021,6 +2041,13 @@ graphql-server-express@^1.1.2:
   dependencies:
     apollo-server-express "^1.1.2"
 
+graphql-subscriptions@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-0.5.6.tgz#0d8e960fbaaf9ecbe7900366e86da2fc143fc5b2"
+  dependencies:
+    es6-promise "^4.1.1"
+    iterall "^1.1.3"
+
 graphql-tools@^1.1.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-1.2.3.tgz#079bf4d157e46c0a0bae9fec117e0eea6e03ba2c"
@@ -2030,12 +2057,14 @@ graphql-tools@^1.1.0:
   optionalDependencies:
     "@types/graphql" "^0.9.0"
 
-graphql-tools@^2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.7.2.tgz#03104a155b15f8441b0e5a7113b12b9512341a9e"
+graphql-tools@^2.18.0:
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-2.18.0.tgz#8e2d6436f9adba1d579c1a1710ae95e7f5e7248b"
   dependencies:
+    apollo-link "^1.0.0"
     apollo-utilities "^1.0.1"
     deprecated-decorator "^0.1.6"
+    graphql-subscriptions "^0.5.6"
     uuid "^3.1.0"
 
 graphql@^0.10.1:
@@ -2137,9 +2166,9 @@ home-or-tmp@^2.0.0:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.1"
 
-hooks-fixed@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/hooks-fixed/-/hooks-fixed-2.0.0.tgz#a01d894d52ac7f6599bbb1f63dfc9c411df70cba"
+hooks-fixed@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/hooks-fixed/-/hooks-fixed-2.0.2.tgz#20076daa07e77d8a6106883ce3f1722e051140b0"
 
 hosted-git-info@^2.1.4:
   version "2.5.0"
@@ -2480,6 +2509,10 @@ iterall@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.1.tgz#f7f0af11e9a04ec6426260f5019d9fcca4d50214"
 
+iterall@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
+
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -2603,7 +2636,7 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash.get@^4.0.0:
+lodash.get@4.4.2, lodash.get@^4.0.0:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
@@ -2821,14 +2854,15 @@ mongodb@^2.2.31:
     mongodb-core "2.1.15"
     readable-stream "2.2.7"
 
-mongoose@^4.12.4:
-  version "4.12.4"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.12.4.tgz#502a2c037376a6c6356eee89128e75653612127c"
+mongoose@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.13.0.tgz#81bb266e045d66ac8dfdd84fc6749c873d7a6ac4"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"
-    hooks-fixed "2.0.0"
+    hooks-fixed "2.0.2"
     kareem "1.5.0"
+    lodash.get "4.4.2"
     mongodb "2.2.33"
     mpath "0.3.0"
     mpromise "0.5.5"
@@ -4408,3 +4442,7 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+zen-observable@^0.6.0:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.6.1.tgz#01dbed3bc8d02cbe9ee1112c83e04c807f647244"

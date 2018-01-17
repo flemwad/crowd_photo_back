@@ -1,15 +1,15 @@
 import Bounty from './Bounty';
 import Image from './Image';
+import PhotoMeta from './PhotoMeta';
 
 export const Photo = `
     type Photo {
         id: Int!
-        image: Image!
-        name: String!
+        postName: String!
         whatToDo: String!
-        votes: Int
-        rating: Int
         category: Int
         bounty: Float
+        image: Image!
+        meta: PhotoMeta!
     }
 `;

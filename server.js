@@ -20,7 +20,8 @@ const APP_PORT = 3000;
 const APP_CONTEXT = path.join(__dirname, 'src');
 
 function startServers(callback) {
-    // Shut down the servers
+
+    // Shut down the servers if it's already started
     if (appServer) appServer.listeningApp.close();
     if (graphQLServer) graphQLServer.close();
 
@@ -35,24 +36,24 @@ function startServers(callback) {
 
         startGraphQLServer(handleTaskDone);
         startAppServer(handleTaskDone);
-
-        //TODO: openDatabaseConnection();
+        openDatabaseConnection();
     });
 }
 
 //TODO: Definitely break this out, start building out models with mongoose: http://mongoosejs.com/docs/guide.html
-
-//Mongoose globals setup
-mongoose.Promise = global.Promise;
-
 function openDatabaseConnection() {
-    mongoose.connect('mongodb://localhost/crowd_photo', { useMongoClient: true }, (err) => {
+    mongoose.connect('mongodb://localhost/crowd_photo_dev', { useMongoClient: true }, (err) => {
         if (err) console.log('Error when connecting:', err);
         else console.log('Server connected to the database.');
     });
+
+    //TODO: Add if dev check...
+    mongoose.set('debug', true);
+
+    var db = mongoose.connection;
 }
 
-//TODO: Break this out, roll everything up with webpack apollo loader or
+//TODO: Break this out, roll everything up with webpack apollo loader
 function startGraphQLServer(callback) {
     // Expose a GraphQL endpoint
     clean('./schema');
