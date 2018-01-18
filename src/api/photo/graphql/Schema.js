@@ -17,7 +17,7 @@ const PhotoMutation = `
     }
 `;
 
-export const PhotoSchema = makeExecutableSchema({ 
+export const PhotoSchema = makeExecutableSchema({
     typeDefs: [PhotoQuery, PhotoMutation, Photo, Image, PhotoMeta],
     resolvers: Resolvers
 });

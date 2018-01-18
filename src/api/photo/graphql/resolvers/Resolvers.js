@@ -6,20 +6,17 @@ import PhotoModel from '../../db/model';
 export default {
     Query: {
         photos: () => {
-            return PhotoModel.find((err, photos) => {
+            return PhotoModel.find({}, '-_id', (err, photos) => {
                 if (err) console.error(err);
 
                 return photos;
-            })
+            }).exec();
         }
     },
     Mutation: {
         upvotePhoto: (_, { photoId }) => {
-            //TODO: This is working but isn't promisified, so GraphQL returns updatePhoto: null result
-            PhotoModel.upvoteById(photoId, (photo) => {
-                console.log('retphoto', photo)
+            return PhotoModel.upvoteById(photoId, (photo) => {
 
-                //Hmmm, how to get rid of this?
                 delete photo._id;
 
                 return photo;

@@ -7,6 +7,8 @@ import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig from './webpack.config';
 import { clean } from 'require-clean';
 import { exec } from 'child_process';
+
+import bluebird from 'bluebird';
 import mongoose from 'mongoose';
 
 //TODO: Bring in configs for environments and databases to hit for mongoose.database and such
@@ -40,24 +42,26 @@ function startServers(callback) {
     });
 }
 
-//TODO: Definitely break this out, start building out models with mongoose: http://mongoosejs.com/docs/guide.html
+//TODO: Definitely break this out
 function openDatabaseConnection() {
-    mongoose.connect('mongodb://localhost/crowd_photo_dev', { useMongoClient: true }, (err) => {
-        if (err) console.log('Error when connecting:', err);
-        else console.log('Server connected to the database.');
-    });
+    mongoose.connect(
+        'mongodb://localhost/crowd_photo_dev',
+        { promiseLibrary: bluebird }, 
+        (err) => {
+            if (err) console.log('Error when connecting:', err);
+            else console.log('Server connected to the database.');
+        }
+    );
 
-    //TODO: Add if dev check...
+    // TODO: Add if dev check...
     mongoose.set('debug', true);
-
-    var db = mongoose.connection;
 }
 
 //TODO: Break this out, roll everything up with webpack apollo loader
 function startGraphQLServer(callback) {
     // Expose a GraphQL endpoint
     clean('./schema');
-    
+
     const { schema } = require('./schema');
     const graphQLApp = express();
 
@@ -81,11 +85,11 @@ function startAppServer(callback) {
         //TODO: currently not working
         hot: true,
         //Where index and public files will be served from, publicPath takes precedence
-        contentBase: path.join(__dirname, 'public'), 
+        contentBase: path.join(__dirname, 'public'),
         //Spin up a graphQL server on GRAPHQL_PORT, it can't be 3000, that's the app port
         proxy: { './graphql': `http://localhost:${GRAPHQL_PORT}` },
         //Where bundle.js will be served from
-        publicPath: webpackConfig.output.publicPath, 
+        publicPath: webpackConfig.output.publicPath,
         stats: {
             colors: true
         }

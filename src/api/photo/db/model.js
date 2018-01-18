@@ -1,17 +1,22 @@
 import mongoose from 'mongoose';
 import photoSchema from './schema';
 
-//Cannot use this binding with arrow functions, so do it old ES5 way
-photoSchema.statics.upvoteById = function(photoId, cb) {
-
-    this.model('Photo').findOne({ id: photoId }, (err, photo) => {
-        if (err) console.error(err);
-
+//Cannot use "this.model" binding with arrow functions
+photoSchema.statics.upvoteById = function (photoId) {
+    console.log('before findOne');
+    return this.model('Photo').findOne({ id: photoId }).then((photo) => {
+        console.log('photo before vote', photo);
         photo.meta.votes++;
-        photo.save((savedPhoto) => {
-            console.log('photo', photo);
-            cb(photo);
+
+        return photo.save().then((savedPhoto) => {
+            console.log('photo after save:', savedPhoto);
+            // console.log(savedPhoto);
+            return savedPhoto;
+        })
+        .catch((err) =>{
+            console.error(err);
         });
+
     });
 };
 
