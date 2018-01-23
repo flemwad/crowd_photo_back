@@ -6,11 +6,13 @@ import PhotoModel from '../../db/model';
 export default {
     Query: {
         photos: () => {
-            return PhotoModel.find({}, '-_id', (err, photos) => {
-                if (err) console.error(err);
-
+            return PhotoModel.find({}, '-_id').then((photos) => {
                 return photos;
-            }).exec();
+            })
+            .catch((err) => {
+                //TODO: DB log or use something like Raven sentry.io
+                console.error('error with Query: photos', err);
+            });
         }
     },
     Mutation: {
@@ -20,6 +22,9 @@ export default {
                 delete photo._id;
 
                 return photo;
+            }).catch((err) => {
+                //TODO: DB log or use something like Raven sentry.io
+                console.error('error with Mutation: upvotePhoto', err);
             });
         }
     }

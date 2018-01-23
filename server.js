@@ -7,6 +7,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig from './webpack.config';
 import { clean } from 'require-clean';
 import { exec } from 'child_process';
+import cors from 'cors';
 
 import bluebird from 'bluebird';
 import mongoose from 'mongoose';
@@ -64,6 +65,8 @@ function startGraphQLServer(callback) {
 
     const { schema } = require('./schema');
     const graphQLApp = express();
+
+    graphQLApp.use(cors());
 
     graphQLApp.use('/', graphQLHttp({
         graphiql: true,
