@@ -7,6 +7,7 @@ export default {
     Query: {
         photos: () => {
             return PhotoModel.find({}, '-_id').then((photos) => {
+                console.log('photos', photos);
                 return photos;
             })
             .catch((err) => {
@@ -16,15 +17,15 @@ export default {
         }
     },
     Mutation: {
-        upvotePhoto: (_, { photoId }) => {
-            return PhotoModel.upvoteById(photoId, (photo) => {
+        hypePhoto: (_, { photoId }) => {
+            return PhotoModel.hypePhoto(photoId, (photo) => {
 
                 delete photo._id;
 
                 return photo;
             }).catch((err) => {
                 //TODO: DB log or use something like Raven sentry.io
-                console.error('error with Mutation: upvotePhoto', err);
+                console.error('error with Mutation: hypePhoto', err);
             });
         }
     }

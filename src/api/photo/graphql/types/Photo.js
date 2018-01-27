@@ -4,10 +4,10 @@ import PhotoMeta from './PhotoMeta';
 
 export const Photo = `
     type Photo {
-        id: Int!
+        id: String!
         postName: String!
         whatToDo: String!
-        category: Int
+        unixTime: Int!
         bounty: Float
         image: Image!
         meta: PhotoMeta!

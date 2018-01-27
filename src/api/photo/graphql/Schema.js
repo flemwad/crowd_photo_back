@@ -11,13 +11,13 @@ const PhotoQuery = `
     }
 `;
 
-const PhotoMutation = `
+const PhotoMutations = `
     type Mutation {
-        upvotePhoto (photoId: Int!): Photo
+        hypePhoto (photoId: Int!): Photo
     }
 `;
 
 export const PhotoSchema = makeExecutableSchema({
-    typeDefs: [PhotoQuery, PhotoMutation, Photo, Image, PhotoMeta],
+    typeDefs: [PhotoQuery, PhotoMutations, Photo, Image, PhotoMeta],
     resolvers: Resolvers
 });

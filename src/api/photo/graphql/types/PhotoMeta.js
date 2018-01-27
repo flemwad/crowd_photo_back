@@ -1,6 +1,8 @@
 export const PhotoMeta = `
     type PhotoMeta {
-        votes: Int
-        rating: Int
+        hype: Int
+        userRating: Int
+        editorRating: Int
+        category: String
     }
 `;
