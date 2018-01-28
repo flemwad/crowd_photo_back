@@ -8,12 +8,13 @@ import Resolvers from './resolvers/Resolvers';
 const PhotoQuery = `
     type Query {
         photos: [Photo]
+        photo(id: String!): Photo
     }
 `;
 
 const PhotoMutations = `
     type Mutation {
-        hypePhoto (photoId: Int!): Photo
+        hypePhoto(photoId: Int!): Photo
     }
 `;
 

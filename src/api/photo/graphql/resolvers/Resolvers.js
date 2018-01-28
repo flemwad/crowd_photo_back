@@ -7,12 +7,16 @@ export default {
     Query: {
         photos: () => {
             return PhotoModel.find({}, '-_id').then((photos) => {
-                console.log('photos', photos);
                 return photos;
             })
             .catch((err) => {
                 //TODO: DB log or use something like Raven sentry.io
                 console.error('error with Query: photos', err);
+            });
+        },
+        photo: (obj, args, context) => {
+            return PhotoModel.findOne({id: args.id}, '-_id').then((photo) => {;
+                return photo;
             });
         }
     },
