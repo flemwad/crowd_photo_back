@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 //Maybe try something like this https://github.com/graphql-compose/graphql-compose-mongoose
+
 export default new mongoose.Schema({
     id: String,
     postName: String,

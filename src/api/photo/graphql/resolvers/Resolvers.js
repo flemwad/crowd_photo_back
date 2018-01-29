@@ -21,8 +21,8 @@ export default {
         }
     },
     Mutation: {
-        hypePhoto: (_, { photoId }) => {
-            return PhotoModel.hypePhoto(photoId, (photo) => {
+        hypePhoto: (_, { id }) => {
+            return PhotoModel.hypePhoto(id, (photo) => {
 
                 delete photo._id;
 

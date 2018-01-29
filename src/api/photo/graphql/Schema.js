@@ -14,7 +14,7 @@ const PhotoQuery = `
 
 const PhotoMutations = `
     type Mutation {
-        hypePhoto(photoId: Int!): Photo
+        hypePhoto(id: Int!): Photo
     }
 `;
 
