@@ -1,8 +1,13 @@
 import { makeExecutableSchema } from 'graphql-tools';
 
+//Queries
 import { Photo } from './types/Photo';
 import { Image } from './types/Image';
 import { PhotoMeta } from './types/PhotoMeta';
+
+//Inputs
+import { PhotoInput, PhotoMetaInput, ImageInput } from './inputs/PhotoInput';
+
 import Resolvers from './resolvers/Resolvers';
 
 const PhotoQuery = `
@@ -15,10 +20,22 @@ const PhotoQuery = `
 const PhotoMutations = `
     type Mutation {
         hypePhoto(id: Int!): Photo
+        upsertPhoto(photoInput: PhotoInput): Photo
     }
 `;
 
 export const PhotoSchema = makeExecutableSchema({
-    typeDefs: [PhotoQuery, PhotoMutations, Photo, Image, PhotoMeta],
+    typeDefs: [
+        //Queries
+        PhotoQuery, 
+        PhotoMutations, 
+        Photo, 
+        Image, 
+        PhotoMeta, 
+        //Inputs
+        PhotoInput, 
+        PhotoMetaInput, 
+        ImageInput
+    ],
     resolvers: Resolvers
 });
