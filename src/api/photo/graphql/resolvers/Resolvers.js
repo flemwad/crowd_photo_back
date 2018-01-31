@@ -50,6 +50,9 @@ export default {
                 console.error('error with Mutation: upsertPhoto', err);
             });
             
+        },
+        uploadImage: (_, { file }) => {
+            console.log(file);
         }
     }
 };

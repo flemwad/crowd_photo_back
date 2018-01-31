@@ -1,4 +1,6 @@
 import { makeExecutableSchema } from 'graphql-tools';
+import { GraphQLUpload } from 'apollo-upload-server'
+import _ from 'lodash';
 
 //Queries
 import { Photo } from './types/Photo';
@@ -18,9 +20,12 @@ const PhotoQuery = `
 `;
 
 const PhotoMutations = `
+    scalar Upload
+
     type Mutation {
         hypePhoto(id: Int!): Photo
         upsertPhoto(photoInput: PhotoInput): Photo
+        uploadImage(file: Upload!): Image
     }
 `;
 
@@ -37,5 +42,5 @@ export const PhotoSchema = makeExecutableSchema({
         PhotoMetaInput, 
         ImageInput
     ],
-    resolvers: Resolvers
+    resolvers: _.merge(Resolvers, {Upload: GraphQLUpload})
 });

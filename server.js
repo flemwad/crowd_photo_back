@@ -7,6 +7,8 @@ import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig from './webpack.config';
 import { clean } from 'require-clean';
 import { exec } from 'child_process';
+import bodyParser from 'body-parser';
+import { apolloUploadExpress } from 'apollo-upload-server';
 import cors from 'cors';
 
 import bluebird from 'bluebird';
@@ -66,13 +68,15 @@ function startGraphQLServer(callback) {
     const { schema } = require('./schema');
     const graphQLApp = express();
 
-    graphQLApp.use(cors());
-
-    graphQLApp.use('/', graphQLHttp({
-        graphiql: true,
-        pretty: true,
-        schema: schema
-    }));
+    graphQLApp
+        .use(cors())
+        .use(bodyParser.json())
+        .use(apolloUploadExpress())
+        .use('/', graphQLHttp({
+            graphiql: true,
+            pretty: true,
+            schema: schema
+        }));
 
     graphQLServer = graphQLApp.listen(GRAPHQL_PORT, () => {
         console.log(`GraphQL server is now running on http://localhost:${GRAPHQL_PORT}`);

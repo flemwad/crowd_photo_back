@@ -11,6 +11,7 @@
     "dev": "webpack && npm start"
   },
   "dependencies": {
+    "apollo-upload-server": "^4.0.2",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
