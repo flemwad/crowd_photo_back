@@ -7,16 +7,20 @@
   "author": "Tyler Flemming <tflem18@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node server.js",
+    "start": "cross-env NODE_PATH=src babel-node server.js",
     "dev": "webpack && npm start"
   },
   "dependencies": {
     "apollo-upload-server": "^4.0.2",
+    "aws-sdk": "^2.188.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "cross-env": "^5.1.3",
     "express": "^4.15.4",
     "express-graphql": "^0.6.11",
+    "fs": "^0.0.1-security",
     "graphiql": "^0.11.5",
     "graphql": "^0.11.3",
     "graphql-server-express": "^1.1.2",
@@ -24,7 +28,8 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^5.0.0",
-    "restify": "^6.0.1"
+    "restify": "^6.0.1",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -36,7 +41,7 @@
     "clean-webpack-plugin": "^0.1.17",
     "html-loader": "^0.5.1",
     "require-clean": "^0.1.3",
-    "webpack": "^3.6.0",
+    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.3"
   }
 }

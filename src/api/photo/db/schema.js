@@ -18,7 +18,7 @@ export default new mongoose.Schema({
         base64: String,
         size: Number,
         name: String,
-        extension: String
+        mimetype: String
     },
     meta: {
         hype: Number,

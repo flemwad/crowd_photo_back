@@ -3,6 +3,6 @@ export const Image = `
         base64: String!
         size: Int!
         name: String!
-        extension: String!
+        mimetype: String!
     }
 `;

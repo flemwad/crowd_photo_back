@@ -20,12 +20,9 @@ const PhotoQuery = `
 `;
 
 const PhotoMutations = `
-    scalar Upload
-
     type Mutation {
         hypePhoto(id: Int!): Photo
         upsertPhoto(photoInput: PhotoInput): Photo
-        uploadImage(file: Upload!): Image
     }
 `;
 

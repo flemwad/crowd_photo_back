@@ -8,6 +8,7 @@ photoSchema.statics.hypePhoto = function (id) {
         photo.meta.hype++;
 
         return photo.save().then((savedPhoto) => {
+            delete photo._id;
             return savedPhoto;
         }).catch((err) => {
             console.error(err);
@@ -17,10 +18,11 @@ photoSchema.statics.hypePhoto = function (id) {
 };
 
 photoSchema.statics.upsertPhoto = function (photoInput) {
+    //new:true will return the updated document instead of the old one
     return this.model('Photo')
         .findOneAndUpdate({ id: photoInput.id }, photoInput, { upsert: true, new: true })
         .then((photo) => {
-            console.log('retphoto', photo)
+            delete photo._id;
             return photo;
         })
         .catch((err) => {
@@ -28,28 +30,5 @@ photoSchema.statics.upsertPhoto = function (photoInput) {
             console.error('error with Mutation: upsertPhoto', err);
         });
 };
-
-
-//TODO: Make a dev only seed script
-//TODO: Also add S3 or some type of web storage for photos
-// mongoose.model('Photo', photoSchema).create({
-//     id: "2",
-//     postName: "hax_post",
-//     whatToDo: "make it perty",
-//     bounty: 25.00,
-//     unixTime: 1516764038,
-//     image: {
-//         base64: "",
-//         size: 1234,
-//         name: "cool",
-//         extension: ".png"
-//     },
-//     meta: {
-//         hype: 0,
-//         userRating: 2,
-//         editorRating: 3,
-//         category: "test"
-//     }
-// });
 
 export default mongoose.model('Photo', photoSchema);

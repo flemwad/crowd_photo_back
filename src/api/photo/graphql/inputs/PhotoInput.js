@@ -16,14 +16,17 @@ export const PhotoMetaInput = `
     }
 `
 
+//Note that scalar Upload is a drop-in from: https://github.com/jaydenseric/apollo-upload-server
 export const PhotoInput = `
+    scalar Upload
+
     input PhotoInput {
         id: String!
         postName: String!
         whatToDo: String!
         unixTime: Int!
         bounty: Float
-        image: ImageInput!
+        upload: Upload!
         meta: PhotoMetaInput!
     }
 `;

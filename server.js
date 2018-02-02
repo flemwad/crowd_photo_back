@@ -22,8 +22,6 @@ const GRAPHQL_PORT = 8080;
 let appServer;
 const APP_PORT = 3000;
 
-const APP_CONTEXT = path.join(__dirname, 'src');
-
 function startServers(callback) {
 
     // Shut down the servers if it's already started
