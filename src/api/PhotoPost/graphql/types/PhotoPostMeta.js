@@ -1,5 +1,5 @@
-export const PhotoMeta = `
-    type PhotoMeta {
+export const PhotoPostMeta = `
+    type PhotoPostMeta {
         hype: Int
         userRating: Int
         editorRating: Int

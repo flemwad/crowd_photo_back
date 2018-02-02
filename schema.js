@@ -1,8 +1,8 @@
 import { mergeSchemas } from 'graphql-tools';
 
-import { PhotoSchema } from './src/api/photo/graphql/Schema';
+import { PhotoPostSchema } from './src/api/PhotoPost/graphql/Schema';
 
 //Merge together each individual Schema to make the app schema
 export const schema = mergeSchemas({
-    schemas: [PhotoSchema]
+    schemas: [PhotoPostSchema]
 });
