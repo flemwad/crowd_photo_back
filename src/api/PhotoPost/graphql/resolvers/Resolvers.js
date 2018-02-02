@@ -1,9 +1,10 @@
-import { find } from 'lodash';
+import { get } from 'lodash';
 import mongoose from 'mongoose';
 import fs from 'fs';
 
 import PhotoPostModel from 'api/PhotoPost/db/model';
 import getDataFromUploadPromise from 'utils/getDataFromUploadPromise';
+import s3UploadFileStream from 'utils/aws/s3/uploadFileStream';
 
 export default {
     Query: {
@@ -32,33 +33,34 @@ export default {
                 .catch((err) => console.error('error with Mutation: hypePhotoPost', err));
         },
         upsertPhotoPost: (_, { photoPost }) => {
-            return getDataFromUploadPromise(photoPost.upload)
-                .then(({ bufferArray, base64, size, name, mimetype }) => {
+            //First resolve the Upload promise we get from apollo-upload-client
+            return photoPost.upload.then((file) => {
+                //Now we have a filestream and the file info
+                const { stream, filename, mimetype } = file;
+                const length = get(stream, '_readableState.length', 0);
 
-                    //photoInput.upload is the image's filestream, 
-                    //which is provided as a means to get base64 data
-                    //we don't need it to insert to the db with
-                    delete photoPost.upload;
+                //photoInput.upload is the image's filestream, 
+                //which is provided as a means to get base64 data
+                //we don't need it to insert to the db with
+                delete photoPost.upload;
 
-                    // console.log(image);
-                    //console.log('bufferArray', bufferArray);
+                //TODO: Check to see if file already exists in AWS before doing this,
+                //or
+                //TODO: perhaps split this up, and only allow images to be uploaded on create
 
-                    return { base64, size, name, mimetype };
+                //Upload the filestream to s3, returns the s3Uri path
+                return s3UploadFileStream(stream, filename, mimetype, 'PhotoPost')
+                    .then((s3Uri) => {
+                        return { filename, s3Uri, length, mimetype };
+                    });
 
-                }).then((image) => {
-
-                    photoPost.image = image;
-
-                    console.log('before upsert', photoPost);
-
-                    //TODO: Insert a middleware function that calls to S3 for storing this image, 
-                    //instead of writing it to the db as a giant string (large formats won't work anyway)
-                    return PhotoPostModel.upsertPhotoPost(photoPost, (newPhotoPost) => newPhotoPost);
-
-                }).catch((err) => {
-                    //TODO: DB log or use something like Raven sentry.io
-                    console.error('error with Mutation: upsertPhotoPost', err);
-                });
+            }).then((image) => {
+                photoPost.image = image;
+                return PhotoPostModel.upsertPhotoPost(photoPost, (newPhotoPost) => newPhotoPost);
+            }).catch(function (err) {
+                //TODO: DB log or use something like Raven sentry.io
+                console.log(err);
+            });
 
         }
     }

@@ -1,8 +1,8 @@
 export const Image = `
     type Image {
-        base64: String!
-        size: Int!
-        name: String!
+        filename: String!
+        s3Uri: String!
+        length: Int!
         mimetype: String!
     }
 `;

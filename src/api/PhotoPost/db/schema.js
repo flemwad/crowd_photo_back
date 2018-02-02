@@ -15,9 +15,9 @@ export default new mongoose.Schema({
     // }
     unixTime: Number,
     image: {
-        base64: String,
-        size: Number,
-        name: String,
+        filename: String,
+        s3Uri: String,
+        length: Number,
         mimetype: String
     },
     meta: {
