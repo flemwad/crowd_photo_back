@@ -18,9 +18,9 @@ import mongoose from 'mongoose';
 // const config = require('./config')[env];
 
 let graphQLServer;
-const GRAPHQL_PORT = 8080;
+const GRAPHQL_PORT = 9000;
 let appServer;
-const APP_PORT = 3000;
+const APP_PORT = 9001;
 
 function startServers(callback) {
 

@@ -1,9 +1,9 @@
 export const PhotoPostMetaInput = `
     input PhotoPostMetaInput {
-        hype: Int
+        hype: Int!
         userRating: Int
         editorRating: Int
-        category: String
+        category: String!
     }
 `
 
@@ -12,12 +12,12 @@ export const PhotoPostInput = `
     scalar Upload
 
     input PhotoPostInput {
-        id: String!
+        id: String
         postName: String!
         whatToDo: String!
         unixTime: Int!
         bounty: Float
-        upload: Upload!
+        upload: Upload
         meta: PhotoPostMetaInput!
     }
 `;

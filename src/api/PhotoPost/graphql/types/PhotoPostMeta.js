@@ -3,6 +3,6 @@ export const PhotoPostMeta = `
         hype: Int
         userRating: Int
         editorRating: Int
-        category: String
+        category: String!
     }
 `;

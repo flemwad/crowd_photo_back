@@ -1,3 +1,4 @@
+import shortid from 'shortid';
 import { get } from 'lodash';
 import mongoose from 'mongoose';
 import fs from 'fs';
@@ -33,6 +34,19 @@ export default {
                 .catch((err) => console.error('error with Mutation: hypePhotoPost', err));
         },
         upsertPhotoPost: (_, { photoPost }) => {
+            if (!photoPost.upload && !photoPost.id) {
+                //TODO: respond with 500, and log this error
+                console.error('invalid photoPost object', photoPost)
+                throw new Error('invalid photoPost object');
+            }
+
+            //Updating data, but no file supplied for the og upload
+            if (!photoPost.upload && photoPost.id) {
+                return PhotoPostModel.upsertPhotoPost(photoPost, (newPhotoPost) => newPhotoPost);
+            }
+
+            //A new photoPost, because it has an upload file attached, and no id
+            //TODO: Make this a service method will need for later
             //First resolve the Upload promise we get from apollo-upload-client
             return photoPost.upload.then((file) => {
                 //Now we have a filestream and the file info
@@ -52,14 +66,17 @@ export default {
                 return s3UploadFileStream(stream, filename, mimetype, 'PhotoPost')
                     .then((s3Uri) => {
                         return { filename, s3Uri, length, mimetype };
+                    }).catch((err) => {
+                        throw err;
                     });
 
             }).then((image) => {
                 photoPost.image = image;
+                photoPost.id = shortid.generate();
                 return PhotoPostModel.upsertPhotoPost(photoPost, (newPhotoPost) => newPhotoPost);
-            }).catch(function (err) {
+            }).catch((err) => {
                 //TODO: DB log or use something like Raven sentry.io
-                console.log(err);
+                console.error(err);
             });
 
         }
