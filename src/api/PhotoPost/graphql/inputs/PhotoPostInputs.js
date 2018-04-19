@@ -15,7 +15,7 @@ export const PhotoPostInput = `
         id: String
         postName: String!
         whatToDo: String!
-        unixTime: Int!
+        unixTime: Int
         bounty: Float
         upload: Upload
         meta: PhotoPostMetaInput!

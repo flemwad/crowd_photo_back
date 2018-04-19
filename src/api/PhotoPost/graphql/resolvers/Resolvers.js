@@ -1,10 +1,10 @@
+import mongoose from 'mongoose';
+import moment from 'moment';
 import shortid from 'shortid';
 import { get } from 'lodash';
-import mongoose from 'mongoose';
 import fs from 'fs';
 
 import PhotoPostModel from 'api/PhotoPost/db/model';
-import getDataFromUploadPromise from 'utils/getDataFromUploadPromise';
 import s3UploadFileStream from 'utils/aws/s3/uploadFileStream';
 
 export default {
@@ -28,6 +28,8 @@ export default {
         }
     },
     Mutation: {
+        //TODO: Make this user-contextual and store what photos they have hyped
+        //Maybe use MongoDB's DBRef or brute force it? idk
         hypePhotoPost: (_, { id }) => {
             return PhotoPostModel.hypePhotoPost(id, (photoPost) => photoPost)
                 //TODO: DB log or use something like Raven sentry.io
@@ -73,6 +75,8 @@ export default {
             }).then((image) => {
                 photoPost.image = image;
                 photoPost.id = shortid.generate();
+                photoPost.unixTime = moment().unix();
+
                 return PhotoPostModel.upsertPhotoPost(photoPost, (newPhotoPost) => newPhotoPost);
             }).catch((err) => {
                 //TODO: DB log or use something like Raven sentry.io

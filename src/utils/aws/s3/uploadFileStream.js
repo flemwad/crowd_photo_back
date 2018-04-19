@@ -16,7 +16,7 @@ export default (fileStream, filename, mimetype, folder) => {
     const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
     const extension = mime.getExtension(mimetype);
 
-    //This format is basically {API NAME}/{SHORT ID}/{EXT}
+    //This format is basically {API NAME}/{SHORT ID}.{EXT}
     //e.g. PhotoPost/HkuxTFbUM.png
     let awsPath = `${folder}/${shortid.generate()}.${extension}`;
 
