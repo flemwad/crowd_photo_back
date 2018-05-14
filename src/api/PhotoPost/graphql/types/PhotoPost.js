@@ -7,7 +7,7 @@ export const PhotoPost = `
         id: String!
         postName: String!
         whatToDo: String!
-        unixTime: Int!
+        createdUTS: Int!
         bounty: Float
         image: Image!
         meta: PhotoPostMeta!

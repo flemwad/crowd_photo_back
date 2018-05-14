@@ -75,7 +75,7 @@ export default {
             }).then((image) => {
                 photoPost.image = image;
                 photoPost.id = shortid.generate();
-                photoPost.unixTime = moment().unix();
+                photoPost.createdUTS = moment().unix();
 
                 return PhotoPostModel.upsertPhotoPost(photoPost, (newPhotoPost) => newPhotoPost);
             }).catch((err) => {

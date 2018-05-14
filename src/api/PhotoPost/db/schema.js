@@ -13,7 +13,7 @@ export default new mongoose.Schema({
     //     amount: Number,
     //     currencyType: String
     // }
-    unixTime: Number,
+    createdUTS: Number,
     image: {
         filename: String,
         s3Uri: String,
