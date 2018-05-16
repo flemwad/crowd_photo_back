@@ -6,7 +6,9 @@ export default new mongoose.Schema({
     id: String,
     first: String,
     last: String,
+    password: String,
     nick: String,
+    email: String,
     bio: String,
     editor: Boolean,
     //TODO:
