@@ -9,6 +9,6 @@ export const UserInput = `
         email: String!
         bio: String
         editor: Boolean
-        createdUTS: Int!
+        createdUTS: Int
     }
 `;
