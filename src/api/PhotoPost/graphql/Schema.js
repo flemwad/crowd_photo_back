@@ -23,6 +23,7 @@ const PhotoPostQuery = `
 
 const PhotoPostMutations = `
     type Mutation {
+        deletePhotoPost(id: String!): String
         hypePhotoPost(id: String!): PhotoPost
         upsertPhotoPost(photoPost: PhotoPostInput): PhotoPost
     }

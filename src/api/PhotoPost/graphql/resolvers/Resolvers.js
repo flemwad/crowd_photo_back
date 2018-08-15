@@ -35,6 +35,12 @@ export default {
                 //TODO: DB log or use something like Raven sentry.io
                 .catch((err) => console.error('error with Mutation: hypePhotoPost', err));
         },
+        deletePhotoPost: (_, { id }) => {
+            //TODO: Add removing from AWS S3 here as well
+            return PhotoPostModel.deletePhotoPost(id, (retId) => retId)
+                //TODO: DB log or use something like Raven sentry.io
+                .catch((err) => console.error('error with Mutation: deletePhotoPost', err));
+        },
         upsertPhotoPost: (_, { photoPost }) => {
             if (!photoPost.upload && !photoPost.id) {
                 //TODO: respond with 500, and log this error

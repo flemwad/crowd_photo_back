@@ -21,6 +21,15 @@ photoPostSchema.statics.hypePhotoPost = function (id) {
     });
 };
 
+photoPostSchema.statics.deletePhotoPost = function (id) {
+    return this.model(modelName).deleteOne({ id: id }).then(() => {
+        return id;
+    }).catch((err) => {
+        return null;
+        console.error(err);
+    });
+};
+
 photoPostSchema.statics.upsertPhotoPost = function (photoPost) {
     //new:true will return the updated document instead of the old one
     return this.model(modelName)
